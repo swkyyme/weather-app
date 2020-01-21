@@ -11,7 +11,7 @@ import Nav from './components/Nav';
 import Main from './components/Main';
 import Footer from './components/Footer';
 
-import {loadWeather} from './redux/actions/weatherActions';
+import { loadWeather } from './redux/actions/weatherActions';
 
 class App extends React.Component {
 

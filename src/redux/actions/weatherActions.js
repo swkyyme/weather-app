@@ -1,6 +1,6 @@
 import { getWeather } from '../../utils/axios';
 
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 export const FETCH_WEATHER_SUCCESS = 'FETCH_WEATHER_SUCCESS';

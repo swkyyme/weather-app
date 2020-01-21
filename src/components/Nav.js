@@ -3,46 +3,43 @@ import { connect } from 'react-redux';
 import { updateUnitAction, setSearchValueCity, setSearchValueCc } from '../redux/actions/navActions'; //{toggleUnit as toggleUnitAction}
 import { loadWeather } from '../redux/actions/weatherActions';
 
-class Nav extends React.Component {
 
-    handleKeyPress = (event) => {
+function Nav(props) {
+    
+    const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-			this.handleSearch();
+			handleSearch();
 		}
     }
-
-    handleUnit=() => {
-        this.props.updateUnit();
+    const handleUnit=() => {
+        props.updateUnit();
       }
-
-    handleSearch = () => {
-        this.props.loadWeather(this.props.searchValueCity,this.props.searchValueCc);
+    const handleSearch = () => {
+        props.loadWeather(props.searchValueCity,props.searchValueCc);
     }
 
-    render() {
-        return(
-            <nav>
-                <div style={{flex: 1}}>
-                    <input className="search-input" type='text' value={this.props.searchValueCity} onChange={event => {this.props.setSearchValueCity(event.target.value)}} onKeyPress={this.handleKeyPress}/>
-                    <input className="search-input-cc" type='text' value={this.props.searchValueCc} onChange={event => {this.props.setSearchValueCc(event.target.value)}} onKeyPress={this.handleKeyPress}/>
-                    <button className="search-btn" onClick={this.handleSearch}>
-                        <i className="fa fa-search" />
-                    </button>
+    return(
+        <nav>
+            <div style={{flex: 1}}>
+                <input className="search-input" type='text' placeholder='city name' value={props.searchValueCity} onChange={event => {props.setSearchValueCity(event.target.value)}} onKeyPress={handleKeyPress}/>
+                <input className="search-input-cc" type='text' placeholder='cc'value={props.searchValueCc} onChange={event => {props.setSearchValueCc(event.target.value)}} onKeyPress={handleKeyPress}/>
+                <button className="search-btn" onClick={handleSearch}>
+                    <i className="fa fa-search" />
+                </button>
 
-                    <button className="temp-switch"
-                    onClick={this.handleUnit}>
-                        <i
-                            className="fa fa-thermometer-empty"
-                            aria-hidden="true"
-                            style={{paddingRight: 5 + 'px'}}
-                        />
-                        <sup>&deg;</sup> {this.props.unit}
-                    </button>
-                </div>
-            </nav>
-        );
-    }
-
+                <button className="temp-switch"
+                onClick={handleUnit}>
+                    <i
+                        className="fa fa-thermometer-empty"
+                        aria-hidden="true"
+                        style={{paddingRight: 5 + 'px'}}
+                    />
+                    <sup>&deg;</sup> {props.unit}
+                </button>
+            </div>
+        </nav>
+    );
+    
 }
 const mapStateToProps = state => {
     return {
